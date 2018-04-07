@@ -3,15 +3,24 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="icon" href="https://cdn1.iconfinder.com/data/icons/iconza-circle-social/64/697029-twitter-512.png">
+	<title>Twittler!</title>
   </head>
-  <body>
-    <script>
+  
+  <body background="https://marketingland.com/wp-content/ml-loads/2015/10/twitter-bird-logo-beach-ss-1920.jpg">
+	<script>
 
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
-
-        var index = streams.home.length - 1;
+		var $header = $('<h1>Twittler ACRUNNER</h1>');
+		$header.appendTo($body);
+        //var index = streams.home.length - 1;
+		var $button = $('<input type="button" id="newTweet" value="Get New Tweet">');
+		$button.appendTo($body);
+		
+		/*
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
@@ -19,7 +28,29 @@
           $tweet.appendTo($body);
           index -= 1;
         }
-
+		*/
+		var index = 0;
+		document.getElementById("newTweet").onclick = function() {
+		  var d = new Date();
+		  var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' at ' + tweet.created_at);
+          $tweet.appendTo($body);
+		  var a = document.createElement("input");
+		  var $a = $('<input type="button" id=' + index + ' value = "@' +  tweet.user + '">');
+		  $a.appendTo($body);
+		  document.getElementById(index).onclick = function(){
+			usr = tweet.user
+			var str = "@" + usr + "\n";
+			for(var i = 0; i < streams.users[usr].length; i++){
+				str += streams.users[usr][i].message + " at ";
+				str += streams.users[usr][i].created_at + "\n";
+			}
+			alert(str);
+			}
+		  index++;
+		};
+		
       });
 
     </script>
