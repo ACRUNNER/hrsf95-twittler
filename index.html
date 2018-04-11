@@ -17,26 +17,30 @@
 		var $header = $('<h1>Twittler ACRUNNER</h1>');
 		$header.appendTo($body);
         //var index = streams.home.length - 1;
-		var $button = $('<input type="button" id="newTweet" value="Get New Tweet">');
+		var $button = $('<input type="button" id="newTweets" value="Get New Tweets">');
 		$button.appendTo($body);
+		var $button_shawndrost = $('<input type="button" id="shawndrost" value="@shawndrost">');
+		$button_shawndrost.appendTo($body);
+		var $button_sharksforcheap = $('<input type="button" id="sharksforcheap" value="@sharksforcheap">');
+		$button_sharksforcheap.appendTo($body);
+		var $button_mracus = $('<input type="button" id="mracus" value="@mracus">');
+		$button_mracus.appendTo($body);
+		var $button_douglascalhoun = $('<input type="button" id="douglascalhoun" value="@douglascalhoun">');
+		$button_douglascalhoun.appendTo($body);
 		
-		/*
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-		*/
-		var index = 0;
-		document.getElementById("newTweet").onclick = function() {
-		  var d = new Date();
-		  var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' at ' + tweet.created_at);
-          $tweet.appendTo($body);
-		  var a = document.createElement("input");
+		var text = [];
+		var tweets = [];
+		document.getElementById("newTweets").onclick = function() {
+			$( "div" ).remove();
+			var text = [];
+			for(var index = 0; i < streams.home.length; index++){
+				var tweet = streams.home[index];
+				text[index] = '@' + tweet.user + ': ' + tweet.message + ' at ' + tweet.created_at;
+				var $tweet = $('<div></div>');
+				$tweet.text(text[index]);
+				$tweet.appendTo($body);
+			}
+		  /*var a = document.createElement("input");
 		  var $a = $('<input type="button" id=' + index + ' value = "@' +  tweet.user + '">');
 		  $a.appendTo($body);
 		  document.getElementById(index).onclick = function(){
@@ -49,7 +53,53 @@
 			alert(str);
 			}
 		  index++;
+		  */
 		};
+		document.getElementById("shawndrost").onclick = function() {
+			$( "div" ).remove();
+			var text;
+			var $tweet;
+			//console.log(streams.users.shawndrost);
+			for(var i = 0; i < streams.users.shawndrost.length; i++){
+				text = '@shawndrost: ' + streams.users.shawndrost[i].message + ' at ' + streams.users.shawndrost[i].created_at;
+				$tweet = $('<div></div>');
+				$tweet.text(text);
+				$tweet.appendTo($body);
+			}
+		}
+		document.getElementById("sharksforcheap").onclick = function() {
+			$( "div" ).remove();
+			var text;
+			var $tweet;
+			for(var i = 0; i < streams.users.sharksforcheap.length; i++){
+				text = '@sharksforcheap: ' + streams.users.sharksforcheap[i].message + ' at ' + streams.users.sharksforcheap[i].created_at;
+				$tweet = $('<div></div>');
+				$tweet.text(text);
+				$tweet.appendTo($body);
+			}
+		}
+		document.getElementById("mracus").onclick = function() {
+			$( "div" ).remove();
+			var text;
+			var $tweet = $('<div></div>');
+			for(var i = 0; i < streams.users.mracus.length; i++){
+				text = '@mracus: ' + streams.users.mracus[i].message + ' at ' + streams.users.mracus[i].created_at;
+				$tweet = $('<div></div>');
+				$tweet.text(text);
+				$tweet.appendTo($body);
+			}
+		}
+		document.getElementById("douglascalhoun").onclick = function() {
+			$( "div" ).remove();
+			var text;
+			var $tweet = $('<div></div>');
+			for(var i = 0; i < streams.users.douglascalhoun.length; i++){
+				text = '@douglascalhoun: ' + streams.users.douglascalhoun[i].message + ' at ' + streams.users.douglascalhoun[i].created_at;
+				$tweet = $('<div></div>');
+				$tweet.text(text);
+				$tweet.appendTo($body);
+			}
+		}
 		
       });
 
